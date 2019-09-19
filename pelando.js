@@ -19,9 +19,9 @@ exports.fetchData = async function () {
             await driver.findElement(By.tagName('body')).sendKeys(Key.PAGE_DOWN);
             await sleep(500)
         }
-        var product = {}
         await driver.findElements(By.className('gridLayout-item threadCardLayout--card')).then(async res => {
             for (let index = 0; index < res.length; index++) {
+                var product = {}
                 try {
                     const element = res[index];
                     try {
