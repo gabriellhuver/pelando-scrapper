@@ -6,8 +6,10 @@ async function init() {
         "Pegar dados PELANDO.COM"
     ])
     switch (ret) {
+        case -1:
+            process.exit()
         case 0:
-            fetchAndSaveDataToJSON()
+            await fetchAndSaveDataToJSON()
             init()
             break;
         default:
@@ -16,12 +18,13 @@ async function init() {
 }
 
 async function fetchAndSaveDataToJSON() {
-    return new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         try {
             console.log('Iniciando WebScrap')
             var lst = await pelando.fetchData()
             await tools.saveToJson('./output/save.json', lst)
             console.log("WebScrap finalizado com sucesso!")
+            resolve()
         } catch (error) {
             console.log(error)
         }

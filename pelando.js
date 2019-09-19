@@ -51,11 +51,11 @@ exports.fetchData = async function () {
                     prodList.push(product)
                 } catch (error) {
                     console.log(error)
-                } 
+                }
             }
         })
         await driver.quit()
-        resolve()
+        resolve(prodList)
     })
 
 }
